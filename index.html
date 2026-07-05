@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Khadafi's Portfolio</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Personal programmer portfolio designed with SwiftUI aesthetics, monochrome theme, featuring custom segmented pickers, sheet transitions, and dark/light modes.">
+  <meta name="keywords" content="Portfolio, SwiftUI Design, Monochrome, Developer Portfolio, Minimalist Web Design, Poppins Font, Software Engineer">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- SwiftUI-style Sticky Header -->
+  <header class="nav-bar">
+    <div class="nav-bar-container">
+      <div class="nav-title" id="nav-brand" style="display:flex; align-items:center; gap: 10px;">
+        <img src="assets/image/me-1.jpeg" alt="Alex Thorne" class="nav-avatar-badge" onclick="document.querySelector('#overview').scrollIntoView({behavior:'smooth'})" title="Go to Overview">
+        <i data-lucide="terminal"></i>
+        <span></span>
+      </div>
+      <div class="hstack compact">
+        <!-- Language Picker (Mini Segmented Control) -->
+        <div class="segmented-picker" id="lang-picker" style="width: 90px; height: 30px; padding: 2px; margin-right: 8px;">
+          <div class="picker-option active" data-lang="en" style="padding: 3px 6px; font-size: 0.75rem; line-height: 1.5;">EN</div>
+          <div class="picker-option" data-lang="id" style="padding: 3px 6px; font-size: 0.75rem; line-height: 1.5;">ID</div>
+          <div class="picker-slider" id="lang-slider" style="width: calc(50% - 4px); z-index: 1;"></div>
+        </div>
+
+        <div class="hstack compact" style="gap: 4px;">
+          <i data-lucide="sun" style="width:14px; height:14px; color: var(--text-secondary);"></i>
+          <label class="toggle-switch" style="margin-bottom:0;" aria-label="Toggle Dark Mode">
+            <input type="checkbox" id="theme-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+          <i data-lucide="moon" style="width:14px; height:14px; color: var(--text-secondary);"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="container vstack large">
+
+    <!-- Profile Hero Card Section -->
+    <section class="hero-card vstack">
+      <img src="assets/image/me-1.jpeg" alt="Profile Picture" class="profile-avatar">
+      <div class="vstack compact">
+        <h1 class="hero-name">KHADAFI</h1>
+        <p class="hero-title" data-translate="hero-title">Creative Technologist & Full-Stack Engineer</p>
+        <p class="hero-bio" data-translate="hero-bio">
+          Crafting clean user experiences with SwiftUI inspired interfaces and writing robust backends. Focused on semantic HTML, monochrome aesthetic, and fluid micro-interactions.
+        </p>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="hstack justify-between" style="width:100%; max-width:320px; margin: 0 auto;">
+        <a href="#contact" class="btn btn-primary" id="btn-hero-contact" data-translate="btn-contact">
+          <i data-lucide="mail"></i> Contact
+        </a>
+        <a href="#" class="btn btn-secondary" id="btn-hero-resume" data-translate="btn-resume">
+          <i data-lucide="download"></i> Resume
+        </a>
+      </div>
+
+      <!-- SwiftUI-style Statistics Toggle Option -->
+      <div class="list-group" style="text-align: left; width: 100%; margin-bottom: 0; margin-top: 16px;">
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon">
+              <i data-lucide="sliders"></i>
+            </div>
+            <div>
+              <div class="list-row-title" data-translate="dev-stats-title">Developer Mode Statistics</div>
+              <div class="list-row-subtitle" data-translate="dev-stats-subtitle">Show system metrics and stats</div>
+            </div>
+          </div>
+          <div class="list-row-right">
+            <label class="toggle-switch" aria-label="Toggle metrics display">
+              <input type="checkbox" id="metrics-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Metric grid that collapses/expands based on toggle -->
+        <div id="metrics-container" style="padding: 16px; border-top: 1px solid var(--border-color); display: block;">
+          <div class="metrics-grid">
+            <div class="metric-pill">
+              <div class="metric-val" id="metric-exp">4+</div>
+              <div class="metric-label" data-translate="metric-exp">Years Exp</div>
+            </div>
+            <div class="metric-pill">
+              <div class="metric-val" id="metric-proj">28+</div>
+              <div class="metric-label" data-translate="metric-proj">Projects</div>
+            </div>
+            <div class="metric-pill">
+              <div class="metric-val" id="metric-commits">2.4k</div>
+              <div class="metric-label" data-translate="metric-commits">Commits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- iOS Widget Section -->
+    <section class="widget-grid">
+      <!-- Left Widget: Photo Status -->
+      <div class="widget-card widget-photo-card">
+        <img src="assets/image/me-with-okay-happy.jpeg" alt="Developer Coding" class="widget-photo-img">
+        <div class="widget-overlay-content">
+          <span class="widget-pill" data-translate="widget-status-pill">Status: Online</span>
+          <h4 class="widget-overlay-title" data-translate="widget-status-title">Ready to Collaborate</h4>
+          <p class="widget-overlay-subtitle" data-translate="widget-status-subtitle">Feel free to ping me for projects</p>
+        </div>
+      </div>
+      <!-- Right Widget: Khadevrax Brand Card -->
+      <div class="widget-card" style="justify-content: center;">
+        <div class="vstack compact" style="width:100%; align-items: flex-start;">
+          <span class="widget-pill" style="background-color: var(--accent); color: var(--bg-secondary); letter-spacing:0.08em;">Freelance</span>
+          <h4 style="font-weight: 800; font-size: 1.05rem; margin-top: 6px; letter-spacing: -0.02em;">khadevrax</h4>
+          <div style="margin-top: 6px;">
+            <div class="widget-info-row">
+              <span class="widget-info-label">Type</span>
+              <span class="widget-info-value">Web &amp; Mobile Dev</span>
+            </div>
+            <div class="widget-info-row">
+              <span class="widget-info-label">Focus</span>
+              <span class="widget-info-value">Product &amp; Freelance</span>
+            </div>
+            <div class="widget-info-row">
+              <span class="widget-info-label">Status</span>
+              <span class="widget-info-value" style="color: var(--accent); font-weight:700;">Open for Work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SwiftUI Segmented Control (Picker View) -->
+    <nav class="segmented-picker" id="section-picker">
+      <div class="picker-option active" data-target="overview" data-translate="tab-overview">Overview</div>
+      <div class="picker-option" data-target="projects" data-translate="tab-projects">Projects</div>
+      <div class="picker-option" data-target="skills" data-translate="tab-skills">Skills</div>
+      <div class="picker-option" data-target="timeline" data-translate="tab-timeline">Timeline</div>
+      <div class="picker-option" data-target="contact" data-translate="tab-contact">Contact</div>
+      <div class="picker-slider" id="picker-slider"></div>
+    </nav>
+
+    <!-- ==========================================
+         TAB SECTIONS
+         ========================================== -->
+
+    <!-- Section 1: Overview -->
+    <section id="overview" class="page-section vstack">
+
+      <!-- Photo Strip (Mini Mood Gallery) -->
+      <div class="photo-strip" style="margin-bottom: 8px;">
+        <div class="photo-strip-item">
+          <img src="assets/image/me-1.jpeg" alt="Profile photo">
+          <div class="photo-strip-badge">Dev</div>
+        </div>
+        <div class="photo-strip-item">
+          <img src="assets/image/me-with-okay-happy.jpeg" alt="Happy coding">
+          <div class="photo-strip-badge">Mode: ✓</div>
+        </div>
+        <div class="photo-strip-item">
+          <img src="assets/image/me-with-okay.jpeg" alt="Ready to build">
+          <div class="photo-strip-badge">Open</div>
+        </div>
+      </div>
+
+      <div class="list-group-header" data-translate="overview-header-profile">System Profile</div>
+      <div class="list-group">
+        <div class="list-row">
+          <div class="list-row-left">
+            <img src="assets/image/me-1.jpeg" alt="Khadafi" class="list-row-photo-icon">
+            <div>
+              <div class="list-row-title" data-translate="overview-name-title">Full Name</div>
+              <div class="list-row-subtitle">Khadafi</div>
+            </div>
+          </div>
+          <div class="list-row-right" style="font-size:0.75rem;">khadevrax</div>
+        </div>
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="map-pin"></i></div>
+            <div>
+              <div class="list-row-title" data-translate="overview-loc-title">Location</div>
+              <div class="list-row-subtitle">Indonesia</div>
+            </div>
+          </div>
+          <div class="list-row-right" data-translate="overview-loc-val">Remote Available</div>
+        </div>
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="briefcase"></i></div>
+            <div>
+              <div class="list-row-title" data-translate="overview-role-title">Current Role</div>
+              <div class="list-row-subtitle">Software Developer · CIMB Niaga</div>
+            </div>
+          </div>
+          <div class="list-row-right" data-translate="overview-role-val">+ Freelancer</div>
+        </div>
+      </div>
+
+      <div class="list-group-header" data-translate="overview-header-focus">Focus Areas</div>
+      <div class="list-group">
+        <div class="list-row interactive" onclick="switchTab('skills')">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="code-2"></i></div>
+            <div>
+              <div class="list-row-title" data-translate="overview-focus1-title">Frontend Engineering</div>
+              <div class="list-row-subtitle" data-translate="overview-focus1-sub">SwiftUI-like Web Apps, React, responsive layouts</div>
+            </div>
+          </div>
+          <div class="list-row-right"><i data-lucide="chevron-right"></i></div>
+        </div>
+        <div class="list-row interactive" onclick="switchTab('skills')">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="database"></i></div>
+            <div>
+              <div class="list-row-title" data-translate="overview-focus2-title">Backend Architecture</div>
+              <div class="list-row-subtitle" data-translate="overview-focus2-sub">NodeJS APIs, PostgreSQL databases, microservices</div>
+            </div>
+          </div>
+          <div class="list-row-right"><i data-lucide="chevron-right"></i></div>
+        </div>
+        <div class="list-row interactive" onclick="switchTab('skills')">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="smartphone"></i></div>
+            <div>
+              <div class="list-row-title" data-translate="overview-focus3-title">iOS Development</div>
+              <div class="list-row-subtitle" data-translate="overview-focus3-sub">Native applications using Swift & SwiftUI</div>
+            </div>
+          </div>
+          <div class="list-row-right"><i data-lucide="chevron-right"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section id="projects" class="page-section vstack">
+      <div class="hstack justify-between view-toggle-bar">
+        <div class="list-group-header" style="padding:0; margin:0;" data-translate="projects-header">Active Repositories</div>
+        <!-- Project view toggle -->
+        <div class="hstack compact">
+          <button class="btn-circle" id="grid-view-btn" aria-label="Grid View"><i data-lucide="grid"></i></button>
+          <button class="btn-circle" id="list-view-btn" style="opacity: 0.5;" aria-label="List View"><i data-lucide="list"></i></button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projects-container">
+        <!-- Project Card 1 -->
+        <div class="project-card" data-project-id="1">
+          <div class="project-img-wrapper">
+            <img src="assets/project.png" alt="Project preview" class="project-img">
+          </div>
+          <div class="project-content">
+            <span class="project-tag">SwiftUI / CSS</span>
+            <h3 class="project-title" data-translate="proj1-title">Aether Markup Editor</h3>
+            <p class="project-description" data-translate="proj1-desc">A real-time Markdown editor designed with standard Apple SwiftUI layout cards and system controls.</p>
+            <div class="project-author-badge">
+              <img src="assets/image/me-1.jpeg" alt="Author">
+              <span>Khadafi &mdash; khadevrax</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 2 -->
+        <div class="project-card" data-project-id="2">
+          <div class="project-img-wrapper">
+            <img src="assets/project.png" alt="Project preview" class="project-img">
+          </div>
+          <div class="project-content">
+            <span class="project-tag">NodeJS / SQL</span>
+            <h3 class="project-title" data-translate="proj2-title">Synapse IoT Hub</h3>
+            <p class="project-description" data-translate="proj2-desc">An administrative control console collecting sensor telemetry logs from distributed nodes.</p>
+            <div class="project-author-badge">
+              <img src="assets/image/me-with-okay.jpeg" alt="Author">
+              <span>Khadafi &mdash; khadevrax</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 3 -->
+        <div class="project-card" data-project-id="3">
+          <div class="project-img-wrapper">
+            <img src="assets/project.png" alt="Project preview" class="project-img">
+          </div>
+          <div class="project-content">
+            <span class="project-tag">Go / CLI</span>
+            <h3 class="project-title" data-translate="proj3-title">Enigma Vault</h3>
+            <p class="project-description" data-translate="proj3-desc">A lightweight cryptographic terminal client for locally encrypting archives before server sync.</p>
+            <div class="project-author-badge">
+              <img src="assets/image/me-1.jpeg" alt="Author">
+              <span>Khadafi &mdash; khadevrax</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 4 -->
+        <div class="project-card" data-project-id="4">
+          <div class="project-img-wrapper">
+            <img src="assets/project.png" alt="Project preview" class="project-img">
+          </div>
+          <div class="project-content">
+            <span class="project-tag">Webkit / JS</span>
+            <h3 class="project-title" data-translate="proj4-title">HapticJS</h3>
+            <p class="project-description" data-translate="proj4-desc">A micro-library to trigger structural vibration feedbacks on mobile screens through standard web interactions.</p>
+            <div class="project-author-badge">
+              <img src="assets/image/me-with-okay-happy.jpeg" alt="Author">
+              <span>Khadafi &mdash; khadevrax</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Skills -->
+    <section id="skills" class="page-section vstack">
+      <div class="list-group-header" data-translate="skills-header-core">Core Competencies</div>
+      <div class="list-group">
+        <!-- Skill 1 -->
+        <div class="list-row">
+          <div class="skill-bar-container">
+            <div class="skill-info">
+              <span>TypeScript / JavaScript</span>
+              <span>95%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-progress" data-percentage="95%"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="list-row">
+          <div class="skill-bar-container">
+            <div class="skill-info">
+              <span>Swift / SwiftUI</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-progress" data-percentage="85%"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="list-row">
+          <div class="skill-bar-container">
+            <div class="skill-info">
+              <span>Go (Golang)</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-progress" data-percentage="80%"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 4 -->
+        <div class="list-row">
+          <div class="skill-bar-container">
+            <div class="skill-info">
+              <span>Node.js / Express</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-progress" data-percentage="90%"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 5 -->
+        <div class="list-row">
+          <div class="skill-bar-container">
+            <div class="skill-info">
+              <span>PostgreSQL / Redis</span>
+              <span>82%</span>
+            </div>
+            <div class="skill-track">
+              <div class="skill-progress" data-percentage="82%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group-header" data-translate="skills-header-tools">System Tools & Utilities</div>
+      <div class="list-group">
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="git-branch"></i></div>
+            <div class="list-row-title">Version Control (Git & GitHub Actions)</div>
+          </div>
+          <div class="list-row-right" data-translate="skills-expert">Expert</div>
+        </div>
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="container"></i></div>
+            <div class="list-row-title">Containerization (Docker)</div>
+          </div>
+          <div class="list-row-right" data-translate="skills-advanced">Advanced</div>
+        </div>
+        <div class="list-row">
+          <div class="list-row-left">
+            <div class="list-row-icon"><i data-lucide="cloud"></i></div>
+            <div class="list-row-title">Cloud Hosting (AWS, Vercel)</div>
+          </div>
+          <div class="list-row-right" data-translate="skills-intermediate">Intermediate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Timeline / Experience -->
+    <section id="timeline" class="page-section vstack">
+      <div class="list-group-header" data-translate="timeline-header">Professional History</div>
+      <div class="list-group">
+        <!-- Event 1 -->
+        <div class="list-row">
+          <div class="vstack compact" style="width: 100%;">
+            <div class="hstack justify-between" style="width: 100%;">
+              <span class="project-tag" style="background-color: var(--accent); color: var(--bg-secondary);" data-translate="timeline-tag-present">Present</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">2025 - Present</span>
+            </div>
+            <div class="hstack" style="gap:10px; align-items:center; margin-top: 4px;">
+              <img src="assets/image/me-1.jpeg" alt="Khadafi" class="photo-icon sm">
+              <div>
+                <div class="list-row-title" style="font-size: 1.1rem; font-weight:700;" data-translate="timeline-job1-title">Software Developer</div>
+                <div style="font-size:0.9rem; font-weight:500; color:var(--text-secondary);">CIMB Niaga · Indonesia</div>
+              </div>
+            </div>
+            <div class="list-row-subtitle" style="margin-top: 4px;" data-translate="timeline-job1-desc">
+              Architecting modular React dashboards, integrating localized Redis caches, and leading a software team of 4 designers and engineers. Optimized backend API query response thresholds by 34%.
+            </div>
+          </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="list-row">
+          <div class="vstack compact" style="width: 100%;">
+            <div class="hstack justify-between" style="width: 100%;">
+              <span class="project-tag" data-translate="timeline-tag-previous">Freelance</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">2024 - Present</span>
+            </div>
+            <div class="hstack" style="gap:10px; align-items:center; margin-top: 4px;">
+              <img src="assets/image/me-with-okay-happy.jpeg" alt="Khadafi" class="photo-icon sm">
+              <div>
+                <div class="list-row-title" style="font-size: 1.1rem; font-weight:700;">Freelance Software Developer</div>
+                <div style="font-size:0.9rem; font-weight:500; color:var(--text-secondary);">khadevrax · Web &amp; Mobile</div>
+              </div>
+            </div>
+            <div class="list-row-subtitle" style="margin-top: 4px;">
+              Building custom web and mobile applications for clients under the khadevrax brand. Specializing in responsive frontends, REST APIs, and cross-platform mobile apps.
+            </div>
+          </div>
+        </div>
+        <!-- Event 3 -->
+        <div class="list-row">
+          <div class="vstack compact" style="width: 100%;">
+            <div class="hstack justify-between" style="width: 100%;">
+              <span class="project-tag" data-translate="timeline-tag-academics">Graduated</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">July 2025</span>
+            </div>
+            <div class="hstack" style="gap:10px; align-items:center; margin-top: 4px;">
+              <img src="assets/image/me-with-okay.jpeg" alt="Khadafi" class="photo-icon sm">
+              <div>
+                <div class="list-row-title" style="font-size: 1.1rem; font-weight:700;" data-translate="timeline-job3-title">S.Kom. in Computer Science</div>
+                <div style="font-size:0.9rem; font-weight:500; color:var(--text-secondary);" data-translate="timeline-job3-sub">Universitas Indonesia</div>
+              </div>
+            </div>
+            <div class="list-row-subtitle" style="margin-top: 4px;" data-translate="timeline-job3-desc">
+              Specialized in software engineering, web systems, and mobile development. Graduated July 2025 with a focus on practical full-stack applications.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="page-section vstack">
+      <div class="list-group-header" data-translate="contact-header">Send a Message</div>
+
+      <!-- Contact Widgets -->
+      <div class="widget-grid" style="margin-bottom:16px;">
+        <div class="widget-card widget-photo-card" style="min-height: 140px;">
+          <img src="assets/image/me-with-okay.jpeg" alt="Contact ok sign photo" class="widget-photo-img">
+          <div class="widget-overlay-content" style="padding:12px;">
+            <span class="widget-pill" data-translate="contact-widget-pill">Signature</span>
+            <h4 class="widget-overlay-title" data-translate="contact-widget-title">Let's build something!</h4>
+          </div>
+        </div>
+        <div class="widget-card" style="justify-content: center; min-height: 140px;">
+          <div class="vstack compact" style="text-align: center;">
+            <i data-lucide="send" style="margin:0 auto; width:28px; height:28px; color:var(--text-primary);"></i>
+            <div style="font-weight: 600; font-size: 0.85rem; margin-top:8px;" data-translate="contact-widget-resp">Average Response Time: &lt; 24h</div>
+          </div>
+        </div>
+      </div>
+      
+      <form id="contact-form" class="vstack" onsubmit="handleFormSubmit(event)">
+        <!-- Input Group (SwiftUI Style Card Group) -->
+        <div class="list-group" style="margin-bottom:0;">
+          <div class="list-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+            <label for="contact-name" data-translate="contact-label-name">Your Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="Enter name" data-translate-placeholder="contact-placeholder-name" required autocomplete="name">
+          </div>
+          <div class="list-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+            <label for="contact-email" data-translate="contact-label-email">Email Address</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="Enter email" data-translate-placeholder="contact-placeholder-email" required autocomplete="email">
+          </div>
+          <!-- Dropdown List Select (SwiftUI Picker style) -->
+          <div class="list-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+            <label for="contact-reason" data-translate="contact-label-reason">Reason for Inquiry</label>
+            <div style="width:100%; position:relative;">
+              <select id="contact-reason" class="form-input" style="-webkit-appearance:none; appearance:none;" required>
+                <option value="" disabled selected data-translate="contact-option-select">Select an option</option>
+                <option value="project" data-translate="contact-option-project">New Project Discussion</option>
+                <option value="hire" data-translate="contact-option-hire">Hiring Opportunity</option>
+                <option value="collaboration" data-translate="contact-option-collab">Open Source Collaboration</option>
+                <option value="general" data-translate="contact-option-general">General Question</option>
+              </select>
+              <i data-lucide="chevron-down" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); pointer-events:none; color:var(--text-secondary);"></i>
+            </div>
+          </div>
+          <!-- Toggle switch (iOS style) inside Form group -->
+          <div class="list-row">
+            <div class="list-row-left">
+              <div>
+                <div class="list-row-title" data-translate="contact-urgent-title">Urgent Reply Required</div>
+                <div class="list-row-subtitle" data-translate="contact-urgent-sub">Flags message as high priority</div>
+              </div>
+            </div>
+            <div class="list-row-right">
+              <label class="toggle-switch" aria-label="Toggle urgency flag">
+                <input type="checkbox" id="contact-urgent">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-group" style="margin-bottom:0;">
+          <div class="list-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+            <label for="contact-message" data-translate="contact-label-msg">Message Details</label>
+            <textarea id="contact-message" class="form-textarea" placeholder="How can I assist you?" data-translate-placeholder="contact-placeholder-msg" required></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;" id="btn-submit-message" data-translate="contact-btn-submit">
+          <i data-lucide="send"></i> Send Transmission
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       SwiftUI Modal Sheet (Overlay)
+       ========================================== -->
+  <div class="sheet-overlay" id="project-detail-overlay">
+    <div class="sheet">
+      <!-- iOS Drag handle bar -->
+      <span class="sheet-handle"></span>
+      
+      <div class="sheet-header">
+        <h2 class="sheet-title" id="sheet-project-title" data-translate="sheet-title-default">Project Details</h2>
+        <button class="sheet-close" id="sheet-close-btn" aria-label="Close Project Sheet">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      
+      <div class="sheet-content vstack">
+        <img src="assets/project.png" alt="Project illustration image" id="sheet-project-img" class="sheet-project-img">
+        <div class="hstack justify-between">
+          <span class="project-tag" id="sheet-project-tag" data-translate="sheet-tag-default">Category</span>
+          <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:500;" id="sheet-project-status" data-translate="sheet-status-default">Active Repo</span>
+        </div>
+        <!-- Author row in sheet -->
+        <div class="hstack" style="gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+          <img src="assets/image/me-1.jpeg" alt="Author" class="photo-icon sm">
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Khadafi</div>
+            <div style="font-size: 0.72rem; color: var(--text-secondary);">khadevrax · Project Author</div>
+          </div>
+        </div>
+        <p class="hero-bio" id="sheet-project-desc" style="text-align: left; margin: 0; font-size:0.95rem;">
+          Detailed information about the selected project will show up here.
+        </p>
+        
+        <!-- Nested SwiftUI List Row statistics in sheet -->
+        <div class="list-group" style="margin-top:16px;">
+          <div class="list-row">
+            <div class="list-row-left">
+              <div class="list-row-icon"><i data-lucide="star"></i></div>
+              <div class="list-row-title" data-translate="sheet-stars">GitHub Stars</div>
+            </div>
+            <div class="list-row-right" id="sheet-project-stars">128</div>
+          </div>
+          <div class="list-row">
+            <div class="list-row-left">
+              <div class="list-row-icon"><i data-lucide="git-fork"></i></div>
+              <div class="list-row-title" data-translate="sheet-forks">Forks</div>
+            </div>
+            <div class="list-row-right" id="sheet-project-forks">14</div>
+          </div>
+          <div class="list-row">
+            <div class="list-row-left">
+              <div class="list-row-icon"><i data-lucide="clock"></i></div>
+              <div class="list-row-title" data-translate="sheet-activity">Last Activity</div>
+            </div>
+            <div class="list-row-right" id="sheet-project-activity">2 hours ago</div>
+          </div>
+        </div>
+
+        <div class="hstack justify-between" style="width: 100%; margin-top: 16px;">
+          <a href="#" class="btn btn-primary" style="flex:1;" id="sheet-project-btn-visit" target="_blank" rel="noopener" data-translate="sheet-btn-visit">
+            <i data-lucide="external-link"></i> Launch Live
+          </a>
+          <a href="#" class="btn btn-secondary" style="flex:1;" id="sheet-project-btn-source" target="_blank" rel="noopener" data-translate="sheet-btn-source">
+            <i data-lucide="github"></i> View Source
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Avatar FAB (Photo Icon) -->
+  <div class="avatar-fab" id="avatar-fab" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})" title="Contact me!">
+    <img src="assets/image/me-with-okay-happy.jpeg" alt="Contact Alex">
+  </div>
+  <div class="avatar-fab-label">👋 Let's build something!</div>
+
+  <!-- ==========================================
+       Animated Character Chat Popup
+       ========================================== -->
+  <div id="char-chat-widget" class="char-chat-widget">
+    <!-- Character Avatar (changes per conversation) -->
+    <div class="char-avatar-wrap" id="char-avatar-wrap">
+      <img src="assets/image/me-1.jpeg" alt="Character" class="char-avatar-img" id="char-avatar-img">
+      <!-- Pulse ring around avatar -->
+      <span class="char-pulse-ring"></span>
+    </div>
+
+    <!-- Chat Bubble -->
+    <div class="char-bubble" id="char-bubble">
+      <!-- Typing dots (shown before message) -->
+      <div class="char-typing-dots" id="char-typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <!-- Message text -->
+      <p class="char-bubble-text" id="char-bubble-text"></p>
+      <!-- Conversation step indicator dots -->
+      <div class="char-step-dots" id="char-step-dots">
+        <span class="char-step-dot active" data-step="0"></span>
+        <span class="char-step-dot" data-step="1"></span>
+        <span class="char-step-dot" data-step="2"></span>
+      </div>
+      <!-- Close button -->
+      <button class="char-close-btn" id="char-close-btn" aria-label="Close chat">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- SwiftUI-style bottom floating status label / toast alert -->
+  <div id="toast-notification" style="position:fixed; bottom:-60px; left:50%; transform:translateX(-50%); background-color:var(--accent); color:var(--bg-secondary); padding:10px 20px; border-radius:var(--radius-pill); z-index:9999; font-weight:600; font-size:0.85rem; display:flex; align-items:center; gap:8px; box-shadow:var(--shadow-soft); transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);">
+    <i data-lucide="check-circle" style="width:16px; height:16px;"></i>
+    <span id="toast-message">Task Success</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#" class="footer-link">GitHub</a>
+      <a href="#" class="footer-link">LinkedIn</a>
+      <a href="#" class="footer-link">Twitter</a>
+    </div>
+    <p data-translate="footer-text">&copy; 2025 Khadafi · khadevrax. Designed with SwiftUI Monochrome paradigms.</p>
+  </footer>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Main Script -->
+  <script src="script.js"></script>
+  <!-- Character Chat Engine -->
+  <script src="chat-engine.js"></script>
+</body>
+</html>
