@@ -390,16 +390,20 @@ body {
    Character Chat Popup Widget
    ========================================== */
 
-/* --- Main widget container (bottom-left fixed) --- */
+/* --- Main widget container (center-left fixed) --- */
 .char-chat-widget {
   position: fixed;
-  bottom: 28px;
+  top: 65%;
   left: 20px;
+  right: auto;
+  bottom: auto;
+  transform: translateY(-50%);
   z-index: 600;
   display: flex;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
   gap: 10px;
-  pointer-events: none; /* initially disabled */
+  pointer-events: none;
 }
 .char-chat-widget.visible {
   pointer-events: auto;
@@ -412,7 +416,6 @@ body {
   height: 58px;
   flex-shrink: 0;
   cursor: pointer;
-  /* entry animation */
   opacity: 0;
   transform: scale(0.6) translateY(20px);
   transition: opacity 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -474,16 +477,16 @@ body {
   position: relative;
   background-color: var(--bg-secondary);
   border: 1.5px solid var(--border-color);
-  border-radius: 18px 18px 18px 4px; /* iOS chat bubble */
+  border-radius: 18px 18px 18px 4px; /* iOS chat bubble - left side */
   padding: 12px 36px 12px 14px;
-  max-width: 230px;
+  max-width: 220px;
   min-width: 130px;
   box-shadow: 0 6px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
   
-  /* Entry animation */
+  /* Entry animation — slides from left */
   opacity: 0;
   transform: translateX(-20px) scale(0.85);
-  transform-origin: left bottom;
+  transform-origin: left center;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .char-bubble.show {
@@ -495,12 +498,15 @@ body {
   transform: translateX(-12px) scale(0.9);
 }
 
-/* Tail of speech bubble pointing to avatar */
+/* Tail of speech bubble pointing left toward avatar */
 .char-bubble::before {
   content: '';
   position: absolute;
-  bottom: 12px;
+  bottom: auto;
+  top: 50%;
   left: -9px;
+  right: auto;
+  margin-top: -7px;
   width: 14px;
   height: 14px;
   background-color: var(--bg-secondary);
