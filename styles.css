@@ -521,6 +521,34 @@ body {
   clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
 
+/* ==========================================
+   Flipped state for right-side placement 
+   ========================================== */
+.char-chat-widget.flipped {
+  flex-direction: row-reverse;
+}
+.char-chat-widget.flipped .char-bubble {
+  border-radius: 18px 18px 4px 18px;
+  transform-origin: right center;
+  transform: translateX(20px) scale(0.85);
+}
+.char-chat-widget.flipped .char-bubble.show {
+  transform: translateX(0) scale(1);
+}
+.char-chat-widget.flipped .char-bubble.hide {
+  transform: translateX(12px) scale(0.9);
+}
+.char-chat-widget.flipped .char-bubble::before {
+  left: auto;
+  right: -9px;
+  border-left: none;
+  border-right: 1.5px solid var(--border-color);
+  border-bottom: 1.5px solid var(--border-color);
+  border-radius: 0 0 4px 0;
+  transform: rotate(-45deg);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
 /* --- Typing dots (three bouncing dots) --- */
 .char-typing-dots {
   display: flex;

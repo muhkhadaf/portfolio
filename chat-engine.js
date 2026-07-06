@@ -258,8 +258,19 @@ function initCharChat() {
     
     if (hasDragged) {
       e.preventDefault();
-      widget.style.left = (widgetStartX + dx) + 'px';
+      const newX = widgetStartX + dx;
+      widget.style.left = newX + 'px';
       widget.style.top = (widgetStartY + dy) + 'px';
+      
+      checkFlip(newX + (widget.offsetWidth / 2));
+    }
+  }
+
+  function checkFlip(centerX) {
+    if (centerX > window.innerWidth / 2) {
+      widget.classList.add('flipped');
+    } else {
+      widget.classList.remove('flipped');
     }
   }
 
@@ -277,6 +288,10 @@ function initCharChat() {
 
   widget.addEventListener('mousedown', onDragStart);
   widget.addEventListener('touchstart', onDragStart, {passive: true});
+
+  // Check initial flip state based on bounding rect center
+  const initialRect = widget.getBoundingClientRect();
+  checkFlip(initialRect.left + (initialRect.width / 2));
 
   // Initial trigger: 2.8s after page load
   setTimeout(startChat, INITIAL_DELAY);
