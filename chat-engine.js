@@ -183,7 +183,8 @@ function initCharChat() {
   });
 
   // Click avatar → advance manually
-  avatarWrap.addEventListener("click", () => {
+  avatarWrap.addEventListener("click", (e) => {
+    if (hasDragged) return; // Don't advance if we were dragging
     clearTimeout(autoTimer);
     clearTimeout(typeTimer);
     if (currentStep < conversations.length - 1) {
@@ -198,6 +199,7 @@ function initCharChat() {
   stepDots.forEach((dot, i) => {
     dot.addEventListener("click", (e) => {
       e.stopPropagation();
+      if (hasDragged) return;
       if (i === currentStep) return;
       clearTimeout(autoTimer);
       clearTimeout(typeTimer);
@@ -205,6 +207,76 @@ function initCharChat() {
       hideBubble(() => setTimeout(() => showStep(currentStep), 320));
     });
   });
+
+  // ——— Drag Functionality ———
+  let isDragging = false;
+  let hasDragged = false;
+  let dragStartX, dragStartY;
+  let widgetStartX, widgetStartY;
+
+  function onDragStart(e) {
+    if (e.target.closest('#char-close-btn') || e.target.closest('.char-step-dots')) return;
+    
+    isDragging = true;
+    hasDragged = false;
+    
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    
+    dragStartX = clientX;
+    dragStartY = clientY;
+    
+    const rect = widget.getBoundingClientRect();
+    widgetStartX = rect.left;
+    widgetStartY = rect.top;
+    
+    widget.style.transition = 'none';
+    widget.style.transform = 'none';
+    widget.style.bottom = 'auto';
+    widget.style.right = 'auto';
+    widget.style.left = widgetStartX + 'px';
+    widget.style.top = widgetStartY + 'px';
+
+    document.addEventListener('mousemove', onDragMove, {passive: false});
+    document.addEventListener('mouseup', onDragEnd);
+    document.addEventListener('touchmove', onDragMove, {passive: false});
+    document.addEventListener('touchend', onDragEnd);
+  }
+
+  function onDragMove(e) {
+    if (!isDragging) return;
+    
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    
+    const dx = clientX - dragStartX;
+    const dy = clientY - dragStartY;
+    
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+      hasDragged = true;
+    }
+    
+    if (hasDragged) {
+      e.preventDefault();
+      widget.style.left = (widgetStartX + dx) + 'px';
+      widget.style.top = (widgetStartY + dy) + 'px';
+    }
+  }
+
+  function onDragEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('touchend', onDragEnd);
+    
+    setTimeout(() => { hasDragged = false; }, 50);
+  }
+
+  widget.addEventListener('mousedown', onDragStart);
+  widget.addEventListener('touchstart', onDragStart, {passive: true});
 
   // Initial trigger: 2.8s after page load
   setTimeout(startChat, INITIAL_DELAY);

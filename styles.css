@@ -404,6 +404,10 @@ body {
   align-items: center;
   gap: 10px;
   pointer-events: none;
+  cursor: grab;
+}
+.char-chat-widget:active {
+  cursor: grabbing;
 }
 .char-chat-widget.visible {
   pointer-events: auto;
